@@ -21,6 +21,19 @@ To integrate HTML templates into the Flask application, follow these steps:
 
 2. **Modify Routes:** Modify the routes in the Flask application to render these HTML templates. Ensure that the HTML templates are placed in a directory named `templates` in the same directory as your Python script.
 
+**Integration of Prometheus and Grafana:**
+
+To monitor the performance and health of the Hiring Management System, we can integrate Prometheus for collecting metrics and Grafana for visualization. Follow these steps to add Prometheus and Grafana:
+
+1. **Install Prometheus:**
+   - Download and install Prometheus from the official website: [Prometheus Downloads](https://prometheus.io/download/)
+   - Configure Prometheus to scrape metrics from your Flask application. Update the Prometheus configuration file (`prometheus.yml`) accordingly.
+
+2. **Install Grafana:**
+   - Download and install Grafana from the official website: [Grafana Download](https://grafana.com/get)
+   - Configure Grafana to connect to Prometheus as a data source.
+   - Create dashboards in Grafana to visualize the metrics collected by Prometheus.
+
 **Usage:**
 
 1. **Registration Form:**
@@ -39,10 +52,16 @@ To integrate HTML templates into the Flask application, follow these steps:
    - View the test results by navigating to `/results`.
    - Results will be displayed for the logged-in user.
 
+5. **Monitoring with Prometheus and Grafana:**
+   - Access Prometheus dashboard to monitor metrics collected from the Flask application.
+   - Visualize metrics and create custom dashboards in Grafana for comprehensive monitoring.
+
 **Dependencies:**
 
 - Flask
 - SQLite3 (for database operations)
+- Prometheus
+- Grafana
 - Random (for generating random data)
 
 **Installation:**
@@ -52,7 +71,7 @@ To integrate HTML templates into the Flask application, follow these steps:
    pip install Flask
    ```
 
-2. Ensure SQLite3 is installed.
+2. Install Prometheus and Grafana following their respective installation guides.
 
 3. Clone the project repository:
    ```
