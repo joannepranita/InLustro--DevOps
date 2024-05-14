@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 500px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* CSS for bubbles */
+        .bubble {
+            width: 30px;
+            height: 30px;
+            background-color: #87CEEB; /* Sky blue */
+            border-radius: 50%;
+            position: absolute;
+            animation: floatBubble 5s ease-in-out infinite;
+        }
+
+        @keyframes floatBubble {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Aptitude Test</h1>
+    <form id="testForm">
+        <div id="questions">
+            <!-- Questions and answering fields will be generated here -->
+        </div>
+
+        <button onclick="evaluateTest()">Submit Test</button>
+    </form>
+
+    <script>
+        function generateQuestions() {
+            var questions = "";
+            for (var i = 1; i <= 15; i++) { // Generate 15 random questions
+                var num1 = Math.floor(Math.random() * 10) + 1;
+                var num2 = Math.floor(Math.random() * 10) + 1;
+                var operation = Math.random() < 0.5 ? "+" : "-";
+                questions += "<div>";
+                questions += "<p>Question " + i + ": What is " + num1 + " " + operation + " " + num2 + "?</p>";
+                questions += "<input type='text' name='answer" + i + "' placeholder='Enter your answer'>";
+                questions += "</div>";
+            }
+            document.getElementById("questions").innerHTML = questions;
+        }
+
+        function evaluateTest() {
+            var correctAnswers = 0;
+            for (var i = 1; i <= 15; i++) {
+                var userAnswer = parseInt(document.getElementsByName("answer" + i)[0].value);
+                var num1 = parseInt(document.getElementById("questions").getElementsByTagName("div")[i - 1].innerText.split(" ")[3]);
+                var num2 = parseInt(document.getElementById("questions").getElementsByTagName("div")[i - 1].innerText.split(" ")[5]);
+                var operation = document.getElementById("questions").getElementsByTagName("div")[i - 1].innerText.split(" ")[4];
+
+                var correctAnswer = operation === "+" ? num1 + num2 : num1 - num2;
+
+                if (userAnswer === correctAnswer) {
+                    correctAnswers++;
+                }
+            }
+            alert("You got " + correctAnswers + " out of 15 questions correct.");
+        }
+
+        // Generate questions when the page loads
+        generateQuestions();
+    </script>
+</body>
+</html>
